@@ -26,7 +26,7 @@ function hideResults(blockedDomains){
     let results = document.querySelectorAll(".results .result:not(.result--sep):not(.result--more)");
     for(let i=0; i<results.length; i++){
         var url = results[i].getElementsByTagName('a')[0].getAttribute("href");
-        if(!url.startsWith("https://")){
+        if(!!ddghurOptions.hideHTTP&& !url.startsWith("https://")){
             hideResult(results[i].classList);
         } 
         else{
@@ -77,8 +77,7 @@ function addHideShowResultsForDomainLink(){
         let linkTxt = document.createTextNode("Hide results");
         link.appendChild(linkTxt);
         resultUrl.appendChild(link);
-        link.addEventListener("click",hideResultLink,false);
-        
+        link.addEventListener("click",hideResultLink,false);        
     }
 }
 

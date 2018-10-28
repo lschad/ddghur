@@ -94,6 +94,9 @@ var showHiddenLinkIcon = showHiddenLink.querySelector("img.icon");
 var animationsLink = document.querySelector(".animationsLink");
 var animationsLinkIcon = animationsLink.querySelector("img.icon");
 
+var hideHTTPLink = document.querySelector(".hideHTTPLink");
+var hideHTTPLinkIcon = hideHTTPLink.querySelector("img.icon");
+
 var options = {};
 ddghurOptions.then(function(res){
     options = (res.ddghurOptions !== undefined) ? res.ddghurOptions : {}; 
@@ -104,6 +107,10 @@ ddghurOptions.then(function(res){
     if(!("animations" in options) || options.animations === true) {
         animationsLinkIcon.src = "images/enabled.svg";
         animationsLink.classList.add("enabled");
+    }
+    if(!("hideHTTP" in options) || options.hideHTTP === true) {
+        hideHTTPLinkIcon.src = "images/enabled.svg";
+        hideHTTPLink.classList.add("enabled");
     }
 });
 
@@ -144,6 +151,22 @@ animationsLink.addEventListener("click", (e) => {
         browser.storage.local.set({ "ddghurOptions" : options });
     }
     animationsLink.classList.toggle("enabled");
+    
+});
+
+hideHTTPLink.addEventListener("click", (e) => {
+    
+    if(hideHTTPLink.classList.contains("enabled")){
+        hideHTTPLinkIcon.src = "images/disabled.svg";
+        options.hideHTTP = false;
+    }
+    else {
+        hideHTTPLinkIcon.src = "images/enabled.svg";
+        options.hideHTTP = true;
+    }
+    
+    browser.storage.local.set({ "ddghurOptions" : options });
+    hideHTTPLink.classList.toggle("enabled");
     
 });
 
