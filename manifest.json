@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
-  "name": "DuckDuckGo Hide Unwanted Results",
-  "short_name": "ddghur",
-  "version": "0.7",
+  "name": "DuckDuckGo Hide Unwanted Results Plus",
+  "short_name": "ddghurplus",
+  "version": "1.0",
   "developer": {
-    "name": "Tomasz Pisarek",
-    "url": "https://github.com/pistom"
+    "name": "Lucas Schad",
+    "url": "https://github.com/lschad"
   },
 
-  "description": "Hide unwanted DuckDuckGo search results from specific domains.",
+  "description": "Hide unwanted DuckDuckGo search results from specific domains. (Fork from https://github.com/pistom/ddghur)",
 
   "icons": {
     "32": "icons/ddghur-32.png",
@@ -22,7 +22,7 @@
       "19": "icons/ddghur-19.png",
       "38": "icons/ddghur-38.png"
     },
-    "default_title": "DuckDuckGo Hide Unwanted Results",
+    "default_title": "DuckDuckGo Hide Unwanted Results Plus",
     "default_popup": "popup/popup.html"
   },
 
