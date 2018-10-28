@@ -11,21 +11,32 @@ function init(){
 }
 
 function hideResults(blockedDomains){
+    function hideResult(el){
+        el.add("hideResult");
+
+        if(('showedHiddenResults' in ddghurOptions) && ddghurOptions.showedHiddenResults === true) {
+            el.add("enabled");
+        }
+
+        if(('animations' in ddghurOptions) && ddghurOptions.animations === false) {
+            el.add("no-animations");
+        }
+    }
+
     let results = document.querySelectorAll(".results .result:not(.result--sep):not(.result--more)");
     for(let i=0; i<results.length; i++){
-        for(let j=0; j<blockedDomains.length; j++){
-            // let re = new RegExp("(.*\.)*"+blockedDomains[j], "i");
-            let re = new RegExp(blockedDomains[j], "i");
-            if(results[i].dataset.domain.match(re) !== null){
-                results[i].classList.add("hideResult");
-                if(('showedHiddenResults' in ddghurOptions) && ddghurOptions.showedHiddenResults === true) {
-                    results[i].classList.add("enabled");
-                }
-                if(('animations' in ddghurOptions) && ddghurOptions.animations === false) {
-                    results[i].classList.add("no-animations");
-                }
-            } 
-        }
+        var url = results[i].getElementsByTagName('a')[0].getAttribute("href");
+        if(!url.startsWith("https://")){
+            hideResult(results[i].classList);
+        } 
+        else{
+            for(let j=0; j<blockedDomains.length; j++){
+                let re = new RegExp(blockedDomains[j], "i");
+                if(results[i].dataset.domain.match(re) !== null){
+                    hideResult(results[i].classList);
+                } 
+            }
+        }        
     }
 }
 
